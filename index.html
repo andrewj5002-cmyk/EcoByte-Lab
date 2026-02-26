@@ -2,63 +2,114 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="LevelUp Arena: compite en torneos de eSports, descubre coaching profesional, streaming y ranking global.">
+    <meta name="author" content="LevelUp Arena">
     <title>LevelUp Arena</title>
+    <!-- Open Graph / Social tags -->
+    <meta property="og:title" content="LevelUp Arena" />
+    <meta property="og:description" content="Compite en torneos de eSports, transmite en vivo y sube en el ranking global." />
+    <meta property="og:image" content="img/logo.png" />
+    <meta property="og:type" content="website" />
+    <!-- Preload assets -->
+    <link rel="preload" href="img/logo.png" as="image">
+    <link rel="preload" href="img/favicon.ico" as="image">
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
 <header class="header">
     <div class="logo-box">
-        <img src="img/logo.png" alt="LevelUp Logo" class="logo">
+        <img src="img/logo.png" alt="Logotipo de LevelUp Arena" class="logo">
         <h1>LevelUp Arena</h1>
     </div>
 
-    <nav class="nav">
-        <a href="#">Inicio</a>
-        <a href="#">Torneos</a>
-        <a href="#">Ranking</a>
-        <a href="#">Contacto</a>
+    <nav class="nav" aria-label="Navegación principal">
+        <button class="nav__toggle" aria-expanded="false" aria-label="Abrir menú">
+            ☰
+        </button>
+        <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+        <ul class="nav__list">
+            <li class="nav__item"><a href="#inicio">Inicio</a></li>
+            <li class="nav__item"><a href="#torneos">Torneos</a></li>
+            <li class="nav__item"><a href="#ranking">Ranking</a></li>
+            <li class="nav__item"><a href="#contacto">Contacto</a></li>
+        </ul>
     </nav>
 </header>
 
-<section class="hero">
-    <div class="hero-content">
-        <h2>Domina la Arena</h2>
-        <p>
-            Compite en torneos oficiales, mejora con coaching profesional
-            y conviértete en leyenda del mundo eSports.
-        </p>
-        <div class="hero-buttons">
-            <button class="btn-primary">Entrar ahora</button>
-            <button class="btn-secondary">Ver torneos</button>
+<main>
+    <section id="inicio" class="hero" role="banner">
+        <div class="hero-content">
+            <h2>Domina la Arena</h2>
+            <p>
+                Compite en torneos oficiales, mejora con coaching profesional
+                y conviértete en leyenda del mundo eSports.
+            </p>
+            <div class="hero-buttons">
+                <a href="#torneos" class="btn-primary">Entrar ahora</a>
+                <a href="#torneos" class="btn-secondary">Ver torneos</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="features">
-    <h3>Experiencia Competitiva</h3>
-
-    <div class="cards">
-        <div class="card">
-            <h4>Torneos Premium</h4>
-            <p>Eventos semanales con premios y ranking oficial.</p>
+    <section id="torneos" class="torneos" aria-labelledby="torneos-heading">
+        <h3 id="torneos-heading">Torneos Abiertos</h3>
+        <p>Únete cada semana a competencias clasificatorias con premios exclusivos.</p>
+        <div class="cards">
+            <article class="card">
+                <h4>FPS Battle</h4>
+                <p>Jaré con balas y estrategia en mapas dinámicos.</p>
+            </article>
+            <article class="card">
+                <h4>MOBA Clash</h4>
+                <p>Equipos 5v5 luchando por la supremacía.</p>
+            </article>
+            <article class="card">
+                <h4>Racing Rush</h4>
+                <p>Velocidad y precisión en pistas futuristas.</p>
+            </article>
         </div>
+    </section>
 
-        <div class="card">
-            <h4>Zona Streaming</h4>
-            <p>Cabinas profesionales para transmisiones en vivo.</p>
-        </div>
+    <section id="ranking" class="ranking" aria-labelledby="ranking-heading">
+        <h3 id="ranking-heading">Ranking Global</h3>
+        <ol class="ranking-list">
+            <li>PlayerOne - 2540 pts</li>
+            <li>ShadowNinja - 2480 pts</li>
+            <li>CyberQueen - 2400 pts</li>
+            <li>AlphaWolf - 2350 pts</li>
+        </ol>
+    </section>
 
-        <div class="card">
-            <h4>Coaching Elite</h4>
-            <p>Entrena con jugadores profesionales certificados.</p>
-        </div>
-    </div>
-</section>
+    <section id="contacto" class="contacto" aria-labelledby="contacto-heading">
+        <h3 id="contacto-heading">Contacto</h3>
+        <form>
+            <input type="text" name="name" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Correo" required>
+            <textarea name="message" placeholder="Mensaje" required></textarea>
+            <button type="submit" class="btn-primary">Enviar</button>
+        </form>
+    </section>
+</main>
+
+<button id="top-btn" aria-label="Ir arriba">↑</button>
 
 <footer class="footer">
     <p>© 2026 LevelUp Arena | eSports Center</p>
 </footer>
 
+<script>
+    // simple mobile menu toggle
+    const navToggle = document.querySelector('.nav__toggle');
+    const navList = document.querySelector('.nav__list');
+    navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        navList.classList.toggle('nav__list--open');
+    });
+</script>
 </body>
 </html>
