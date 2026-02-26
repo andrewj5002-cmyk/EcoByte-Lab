@@ -399,6 +399,30 @@ main {
     outline: 2px solid var(--primary-color);
 }
 
+/* table ranking */
+.ranking-table {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.ranking-table th,
+.ranking-table td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.ranking-table thead {
+    background: rgba(28,28,46,0.8);
+}
+
+.ranking-table tbody tr:hover {
+    background: rgba(157,0,255,0.2);
+}
+
+
 /* reveal animation */
 section {
     opacity: 0;

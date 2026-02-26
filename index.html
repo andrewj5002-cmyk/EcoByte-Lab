@@ -82,12 +82,21 @@
     <section id="ranking" class="ranking" aria-labelledby="ranking-heading">
         <h3 id="ranking-heading">Ranking Global</h3>
         <input type="text" id="ranking-filter" placeholder="Buscar jugador..." aria-label="Filtrar ranking" data-tooltip="Escribe para filtrar la lista">
-        <ol class="ranking-list">
-            <li>PlayerOne - 2540 pts</li>
-            <li>ShadowNinja - 2480 pts</li>
-            <li>CyberQueen - 2400 pts</li>
-            <li>AlphaWolf - 2350 pts</li>
-        </ol>
+        <table class="ranking-table">
+            <thead>
+                <tr><th>#</th><th>Jugador</th><th>Puntos</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>PlayerOne</td><td>2540</td></tr>
+                <tr><td>2</td><td>ShadowNinja</td><td>2480</td></tr>
+                <tr><td>3</td><td>CyberQueen</td><td>2400</td></tr>
+                <tr><td>4</td><td>AlphaWolf</td><td>2350</td></tr>
+                <tr><td>5</td><td>joelmcd10</td><td>2300</td></tr>
+                <tr><td>6</td><td>GamerX</td><td>2280</td></tr>
+                <tr><td>7</td><td>NinjaPro</td><td>2250</td></tr>
+                <tr><td>8</td><td>SpeedRunner</td><td>2200</td></tr>
+            </tbody>
+        </table>
     </section>
 
     <section id="contacto" class="contacto" aria-labelledby="contacto-heading">
@@ -242,8 +251,8 @@
     if (rankingFilter) {
         rankingFilter.addEventListener('input', () => {
             const term = rankingFilter.value.toLowerCase();
-            document.querySelectorAll('.ranking-list li').forEach(li => {
-                li.style.display = li.textContent.toLowerCase().includes(term) ? '' : 'none';
+            document.querySelectorAll('.ranking-table tbody tr').forEach(tr => {
+                tr.style.display = tr.textContent.toLowerCase().includes(term) ? '' : 'none';
             });
         });
     }
