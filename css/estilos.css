@@ -108,6 +108,38 @@ main {
     align-items: center;
 }
 
+/* skip link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 1001;
+    transition: top 0.3s;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* form label spacing */
+.contacto label,
+.newsletter label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* ensure canvas is top but not blocking */
+#hero-canvas {
+    z-index: 0;
+}
+
+#confetti-canvas {
+    z-index: 2000;
+}
+
 /* tooltip */
 [data-tooltip] {
     position: relative;
@@ -365,7 +397,14 @@ main {
     padding: 2.5rem;
     width: 260px;
     border-radius: 15px;
-    transition: 0.4s;
+    transition: transform 0.4s, box-shadow 0.4s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card:hover {
+    transform: translateY(-15px) rotateY(5deg) rotateX(5deg);
+    box-shadow: 0 0 30px rgba(157, 0, 255, 0.6);
 }
 
 .card:hover,

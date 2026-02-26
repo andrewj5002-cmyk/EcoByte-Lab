@@ -6,6 +6,20 @@
     <meta name="description" content="LevelUp Arena: compite en torneos de eSports, descubre coaching profesional, streaming y ranking global.">
     <meta name="author" content="LevelUp Arena">
     <title>LevelUp Arena</title>
+    <!-- Structured data JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "LevelUp Arena",
+      "url": "https://example.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://example.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
     <!-- Open Graph / Social tags -->
     <meta property="og:title" content="LevelUp Arena" />
     <meta property="og:description" content="Compite en torneos de eSports, transmite en vivo y sube en el ranking global." />
@@ -19,6 +33,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+<a href="#inicio" class="skip-link">Saltar al contenido</a>
 
 <header class="header">
     <div class="logo-box">
@@ -45,7 +60,7 @@
     <section id="inicio" class="hero" role="banner">
         <!-- canvas for floating particles -->
         <canvas id="hero-canvas"></canvas>
-        <div class="hero-content">
+        <div class="hero-content" tabindex="-1">
             <h2>Domina la Arena</h2>
             <p>
                 Compite en torneos oficiales, mejora con coaching profesional
@@ -62,19 +77,19 @@
         <h3 id="torneos-heading">Torneos Estelares</h3>
         <p>Participa en nuestras competiciones temáticas; cada juego ofrece premios únicos y ranking propio.</p>
         <div class="cards">
-            <article class="card" data-title="Minecraft Mayhem" data-desc="Compite en este mundo cúbico: construye, explora y defiende tu base. Premios para las creaciones más épicas.">
+            <article class="card" tabindex="0" data-title="Minecraft Mayhem" data-desc="Compite en este mundo cúbico: construye, explora y defiende tu base. Premios para las creaciones más épicas.">
                 <h4>❤ Minecraft Mayhem ❤</h4>
                 <p>Construcción y supervivencia al máximo: solo los más creativos ganan.</p>
             </article>
-            <article class="card" data-title="Roblox Royale" data-desc="Un reto personalizado en cada partida: escala la torre, domina el obby, o gana el tycoon.">
+            <article class="card" tabindex="0" data-title="Roblox Royale" data-desc="Un reto personalizado en cada partida: escala la torre, domina el obby, o gana el tycoon.">
                 <h4>⚔ Roblox Royale ⚔</h4>
                 <p>Batallas de mini-juegos entre millones de mundos creados por usuarios.</p>
             </article>
-            <article class="card" data-title="Free Fire Blaze" data-desc="15 minutos de acción, 50 jugadores, los mejores drops y zonas de alto riesgo. Solo el más rápido vive.">
+            <article class="card" tabindex="0" data-title="Free Fire Blaze" data-desc="15 minutos de acción, 50 jugadores, los mejores drops y zonas de alto riesgo. Solo el más rápido vive.">
                 <h4>🔥 Free Fire Blaze 🔥</h4>
                 <p>Dispara, sobrevive y sé el último en pie en el mapa incendiario.</p>
             </article>
-            <article class="card" data-title="Torneo Sorpresa" data-desc="Nunca sabes qué juego tocará. ¡Mantente listo para cualquier desafío!">
+            <article class="card" tabindex="0" data-title="Torneo Sorpresa" data-desc="Nunca sabes qué juego tocará. ¡Mantente listo para cualquier desafío!">
                 <h4>🎮 Torneo Sorpresa 🎮</h4>
                 <p>Evento wildcard con rotación semanal de títulos populares.</p>
             </article>
@@ -104,11 +119,20 @@
     <section id="contacto" class="contacto" aria-labelledby="contacto-heading">
         <h3 id="contacto-heading">Contacto</h3>
         <form id="contact-form">
-            <input type="text" name="name" placeholder="Nombre" required>
-            <input type="email" name="email" placeholder="Correo" required>
-            <textarea name="message" placeholder="Mensaje" required></textarea>
+            <label>
+                Nombre
+                <input type="text" name="name" placeholder="Nombre" required>
+            </label>
+            <label>
+                Correo
+                <input type="email" name="email" placeholder="Correo" required>
+            </label>
+            <label>
+                Mensaje
+                <textarea name="message" placeholder="Mensaje" required></textarea>
+            </label>
             <button type="submit" class="btn-primary">Enviar</button>
-            <p id="contact-success" class="success-msg" hidden>¡Gracias! Te contactaremos pronto.</p>
+            <p id="contact-success" class="success-msg" role="status" aria-live="polite" hidden>¡Gracias! Te contactaremos pronto.</p>
         </form>
     </section>
 
@@ -125,9 +149,12 @@
         <h3 id="newsletter-heading">Suscríbete</h3>
         <p>Recibe alertas de torneos y noticias directamente en tu correo.</p>
         <form id="newsletter-form">
-            <input type="email" name="subscriber" placeholder="Tu correo" required>
+            <label>
+                Correo
+                <input type="email" name="subscriber" placeholder="Tu correo" required>
+            </label>
             <button type="submit" class="btn-secondary">Suscribir</button>
-            <p id="newsletter-success" class="success-msg" hidden>¡Suscripción exitosa!</p>
+            <p id="newsletter-success" class="success-msg" role="status" aria-live="polite" hidden>¡Suscripción exitosa!</p>
         </form>
     </section>
 
@@ -137,10 +164,10 @@
             <button class="carousel__nav carousel__prev" aria-label="Anterior">‹</button>
             <div class="carousel__track-container">
                 <ul class="carousel__track">
-                    <li class="carousel__slide"><img src="img/hq720.jpg" alt="Captura 1"></li>
-                    <li class="carousel__slide"><img src="img/hq721.jpg" alt="Captura 2"></li>
-                    <li class="carousel__slide"><img src="img/images.jpg" alt="Captura 3"></li>
-                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 4"></li>
+                    <li class="carousel__slide"><img src="img/hq720.jpg" alt="Captura 1" loading="lazy"></li>
+                    <li class="carousel__slide"><img src="img/hq721.jpg" alt="Captura 2" loading="lazy"></li>
+                    <li class="carousel__slide"><img src="img/images.jpg" alt="Captura 3" loading="lazy"></li>
+                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 4" loading="lazy"></li>
                 </ul>
             </div>
             <button class="carousel__nav carousel__next" aria-label="Siguiente">›</button>
@@ -160,8 +187,8 @@
 </footer>
 
 <!-- generic modal for tournament details -->
-<div id="modal" class="modal" aria-hidden="true" role="dialog">
-    <div class="modal__content">
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__content" tabindex="-1">
         <button class="modal__close" aria-label="Cerrar">×</button>
         <h2 id="modal-title"></h2>
         <p id="modal-desc"></p>
@@ -263,17 +290,56 @@
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modal-title');
     const modalDesc = document.getElementById('modal-desc');
+    const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
     document.querySelectorAll('.card[data-title]').forEach(card => {
         card.addEventListener('click', () => {
             modalTitle.textContent = card.getAttribute('data-title');
             modalDesc.textContent = card.getAttribute('data-desc');
             modal.classList.add('show');
             modal.setAttribute('aria-hidden','false');
+            const focusables = modal.querySelectorAll(focusableSelectors);
+            if (focusables.length) focusables[0].focus();
+        });
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
+        });
+    });
+    let lastFocusedCard = null;
+    document.querySelectorAll('.card[data-title]').forEach(card => {
+        card.addEventListener('click', () => {
+            lastFocusedCard = card;
         });
     });
     document.querySelector('.modal__close').addEventListener('click', () => {
         modal.classList.remove('show');
         modal.setAttribute('aria-hidden','true');
+        if (lastFocusedCard) lastFocusedCard.focus();
+    });
+    // trap focus inside modal when open
+    modal.addEventListener('keydown', e => {
+        if (e.key === 'Tab') {
+            const focusables = modal.querySelectorAll(focusableSelectors);
+            if (focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
+        if (e.key === 'Escape') {
+            modal.querySelector('.modal__close').click();
+        }
     });
 
     // gallery carousel
@@ -293,6 +359,11 @@
     prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         updateCarousel(currentIndex);
+    });
+    // keyboard support for carousel
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') nextButton.click();
+        if (e.key === 'ArrowLeft') prevButton.click();
     });
 
     // reveal on scroll
@@ -416,6 +487,11 @@
     // attach confetti to form submissions
     if (contactForm) contactForm.addEventListener('submit', () => { window.launchConfetti(); });
     if (newsletterForm) newsletterForm.addEventListener('submit', () => { window.launchConfetti(); });
+
+    // register simple service worker for offline/cache
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(console.error);
+    }
 </script>
 </body>
 </html>
