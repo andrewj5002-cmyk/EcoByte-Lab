@@ -43,6 +43,8 @@
 
 <main>
     <section id="inicio" class="hero" role="banner">
+        <!-- canvas for floating particles -->
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-content">
             <h2>Domina la Arena</h2>
             <p>
@@ -50,8 +52,8 @@
                 y conviértete en leyenda del mundo eSports.
             </p>
             <div class="hero-buttons">
-                <a href="#torneos" class="btn-primary">Entrar ahora</a>
-                <a href="#torneos" class="btn-secondary">Ver torneos</a>
+                <a href="#torneos" class="btn-primary btn-animate">Entrar ahora</a>
+                <a href="#torneos" class="btn-secondary btn-animate">Ver torneos</a>
             </div>
         </div>
     </section>
@@ -314,6 +316,106 @@
         });
     }, { threshold: 0.6 });
     sections.forEach(sec => spy.observe(sec));
+
+    // floating particles in hero
+    (() => {
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const resize = () => {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+        };
+        window.addEventListener('resize', resize);
+        resize();
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(157,0,255,${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+        const initParticles = () => {
+            particles = [];
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+        };
+        const animate = () => {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p=>{p.update();p.draw();});
+            requestAnimationFrame(animate);
+        };
+        initParticles();
+        animate();
+    })();
+
+    // confetti effect for forms
+    (() => {
+        const confettiCanvas = document.createElement('canvas');
+        confettiCanvas.id = 'confetti-canvas';
+        document.body.appendChild(confettiCanvas);
+        const ctx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        });
+        let confettiPieces = [];
+        class Confetti {
+            constructor() {
+                this.x = Math.random() * confettiCanvas.width;
+                this.y = -10;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = Math.random() * 3 + 2;
+                this.size = Math.random() * 6 + 4;
+                this.color = `hsl(${Math.random()*360},100%,50%)`;
+                this.tilt = Math.random()*10 - 5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.tilt += 0.1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.size, this.size/2);
+            }
+        }
+        const launch = () => {
+            for (let i=0;i<200;i++) confettiPieces.push(new Confetti());
+            animateConfetti();
+        };
+        const animateConfetti = () => {
+            ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+            confettiPieces.forEach((c,i)=>{
+                c.update();
+                c.draw();
+                if (c.y > confettiCanvas.height) confettiPieces.splice(i,1);
+            });
+            if (confettiPieces.length>0) requestAnimationFrame(animateConfetti);
+        };
+        // expose
+        window.launchConfetti = launch;
+    })();
+
+    // attach confetti to form submissions
+    if (contactForm) contactForm.addEventListener('submit', () => { window.launchConfetti(); });
+    if (newsletterForm) newsletterForm.addEventListener('submit', () => { window.launchConfetti(); });
 </script>
 </body>
 </html>

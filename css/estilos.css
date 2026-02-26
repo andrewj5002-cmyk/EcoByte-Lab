@@ -220,6 +220,8 @@ main {
 
 /* HERO */
 .hero {
+    position: relative;
+    overflow: hidden;
     min-height: 90vh;
     display: flex;
     justify-content: center;
@@ -227,6 +229,35 @@ main {
     text-align: center;
     padding: 2rem;
     animation: fadeIn 1s ease-out;
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#confetti-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2000;
+}
+
+.btn-animate {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-animate:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--secondary-color);
+}
+
+.btn-animate:active {
+    transform: scale(0.95);
 }
 
 @keyframes fadeIn {
@@ -642,4 +673,16 @@ section.visible {
 
 .footer .social-icons a:hover {
     color: var(--primary-color);
+}
+/* gradient animation background */
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+body {
+    background: linear-gradient(135deg, var(--background-dark), var(--background-light));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
