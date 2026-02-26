@@ -30,7 +30,7 @@
         <button class="nav__toggle" aria-expanded="false" aria-label="Abrir menú">
             ☰
         </button>
-        <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+        <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema" data-tooltip="Alternar claro/oscuro">🌙</button>
         <ul class="nav__list">
             <li class="nav__item"><a href="#inicio">Inicio</a></li>
             <li class="nav__item"><a href="#torneos">Torneos</a></li>
@@ -81,7 +81,7 @@
 
     <section id="ranking" class="ranking" aria-labelledby="ranking-heading">
         <h3 id="ranking-heading">Ranking Global</h3>
-        <input type="text" id="ranking-filter" placeholder="Buscar jugador..." aria-label="Filtrar ranking">
+        <input type="text" id="ranking-filter" placeholder="Buscar jugador..." aria-label="Filtrar ranking" data-tooltip="Escribe para filtrar la lista">
         <ol class="ranking-list">
             <li>PlayerOne - 2540 pts</li>
             <li>ShadowNinja - 2480 pts</li>
@@ -126,9 +126,10 @@
             <button class="carousel__nav carousel__prev" aria-label="Anterior">‹</button>
             <div class="carousel__track-container">
                 <ul class="carousel__track">
-                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 1"></li>
-                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 2"></li>
-                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 3"></li>
+                    <li class="carousel__slide"><img src="img/hq720.jpg" alt="Captura 1"></li>
+                    <li class="carousel__slide"><img src="img/hq721.jpg" alt="Captura 2"></li>
+                    <li class="carousel__slide"><img src="img/images.jpg" alt="Captura 3"></li>
+                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 4"></li>
                 </ul>
             </div>
             <button class="carousel__nav carousel__next" aria-label="Siguiente">›</button>
@@ -140,6 +141,11 @@
 
 <footer class="footer">
     <p>© 2026 Joel creación de torneos</p>
+    <div class="social-icons">
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+        <a href="#" aria-label="YouTube">▶️</a>
+    </div>
 </footer>
 
 <!-- generic modal for tournament details -->
@@ -230,6 +236,75 @@
             newsletterForm.reset();
         });
     }
+
+    // ranking filter
+    const rankingFilter = document.getElementById('ranking-filter');
+    if (rankingFilter) {
+        rankingFilter.addEventListener('input', () => {
+            const term = rankingFilter.value.toLowerCase();
+            document.querySelectorAll('.ranking-list li').forEach(li => {
+                li.style.display = li.textContent.toLowerCase().includes(term) ? '' : 'none';
+            });
+        });
+    }
+
+    // modal logic for tournament cards
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    document.querySelectorAll('.card[data-title]').forEach(card => {
+        card.addEventListener('click', () => {
+            modalTitle.textContent = card.getAttribute('data-title');
+            modalDesc.textContent = card.getAttribute('data-desc');
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden','false');
+        });
+    });
+    document.querySelector('.modal__close').addEventListener('click', () => {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+    });
+
+    // gallery carousel
+    const track = document.querySelector('.carousel__track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel__next');
+    const prevButton = document.querySelector('.carousel__prev');
+    let currentIndex = 0;
+    const updateCarousel = index => {
+        const amount = -index * 100;
+        track.style.transform = `translateX(${amount}%)`;
+    };
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel(currentIndex);
+    });
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel(currentIndex);
+    });
+
+    // reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+    // scrollspy for nav links
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav__item a');
+    const spy = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#'+entry.target.id));
+            }
+        });
+    }, { threshold: 0.6 });
+    sections.forEach(sec => spy.observe(sec));
 </script>
 </body>
 </html>
