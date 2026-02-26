@@ -69,6 +69,19 @@ a:focus {
     background: rgba(28, 28, 46, 0.7);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(157, 0, 255, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: box-shadow 0.3s;
+}
+
+.header.scrolled {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+main {
+    padding-top: 100px; /* header height space */
 }
 
 .logo-box {
@@ -91,6 +104,8 @@ a:focus {
 /* NAV */
 .nav {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .nav__toggle {
@@ -252,7 +267,7 @@ a:focus {
 }
 
 /* FEATURES */
-.features {
+.features, .torneos, .ranking, .contacto {
     padding: 5rem 3rem;
     text-align: center;
 }
@@ -268,6 +283,7 @@ a:focus {
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+    margin-top: 2rem;
 }
 
 .card {
@@ -297,7 +313,7 @@ a:focus {
 }
 
 @media (max-width: 600px) {
-    .features {
+    .features, .torneos, .ranking, .contacto {
         padding: 3rem 1rem;
     }
 
@@ -305,6 +321,65 @@ a:focus {
         width: 100%;
     }
 }
+
+/* RANKING LIST */
+.ranking-list {
+    list-style: none;
+    padding: 0;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.ranking-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* CONTACT FORM */
+.contacto form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contacto input,
+.contacto textarea {
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-color);
+    background: rgba(255,255,255,0.05);
+    color: var(--text-light);
+}
+
+.contacto input:focus,
+.contacto textarea:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+#top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: var(--background-dark);
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 1.2rem;
+    z-index: 1001;
+    transition: opacity 0.3s;
+}
+
+#top-btn.show {
+    display: block;
+    opacity: 0.8;
+}
+
 
 /* FOOTER */
 .footer {

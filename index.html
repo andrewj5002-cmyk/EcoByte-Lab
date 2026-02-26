@@ -22,7 +22,7 @@
 
 <header class="header">
     <div class="logo-box">
-        <img src="img/logo.png" alt="Logotipo de LevelUp Arena" class="logo">
+        <img src="img/logo.png" alt="Logotipo de LevelUp Arena" class="logo" loading="lazy">
         <h1>LevelUp Arena</h1>
     </div>
 
@@ -56,20 +56,24 @@
     </section>
 
     <section id="torneos" class="torneos" aria-labelledby="torneos-heading">
-        <h3 id="torneos-heading">Torneos Abiertos</h3>
-        <p>Únete cada semana a competencias clasificatorias con premios exclusivos.</p>
+        <h3 id="torneos-heading">Torneos Estelares</h3>
+        <p>Participa en nuestras competiciones temáticas; cada juego ofrece premios únicos y ranking propio.</p>
         <div class="cards">
             <article class="card">
-                <h4>FPS Battle</h4>
-                <p>Jaré con balas y estrategia en mapas dinámicos.</p>
+                <h4>❤ Minecraft Mayhem ❤</h4>
+                <p>Construcción y supervivencia al máximo: solo los más creativos ganan.</p>
             </article>
             <article class="card">
-                <h4>MOBA Clash</h4>
-                <p>Equipos 5v5 luchando por la supremacía.</p>
+                <h4>⚔ Roblox Royale ⚔</h4>
+                <p>Batallas de mini-juegos entre millones de mundos creados por usuarios.</p>
             </article>
             <article class="card">
-                <h4>Racing Rush</h4>
-                <p>Velocidad y precisión en pistas futuristas.</p>
+                <h4>🔥 Free Fire Blaze 🔥</h4>
+                <p>Dispara, sobrevive y sé el último en pie en el mapa incendiario.</p>
+            </article>
+            <article class="card">
+                <h4>🎮 Torneo Sorpresa 🎮</h4>
+                <p>Evento wildcard con rotación semanal de títulos populares.</p>
             </article>
         </div>
     </section>
@@ -86,11 +90,31 @@
 
     <section id="contacto" class="contacto" aria-labelledby="contacto-heading">
         <h3 id="contacto-heading">Contacto</h3>
-        <form>
+        <form id="contact-form">
             <input type="text" name="name" placeholder="Nombre" required>
             <input type="email" name="email" placeholder="Correo" required>
             <textarea name="message" placeholder="Mensaje" required></textarea>
             <button type="submit" class="btn-primary">Enviar</button>
+            <p id="contact-success" class="success-msg" hidden>¡Gracias! Te contactaremos pronto.</p>
+        </form>
+    </section>
+
+    <section id="noticias" class="news" aria-labelledby="noticias-heading">
+        <h3 id="noticias-heading">Últimas Noticias</h3>
+        <ul>
+            <li>Se lanzó el nuevo mapa de Minecraft Mayhem.</li>
+            <li>Roblox Royale rompe su record de participantes.</li>
+            <li>Free Fire anuncia colaboración con famosos streamers.</li>
+        </ul>
+    </section>
+
+    <section id="newsletter" class="newsletter" aria-labelledby="newsletter-heading">
+        <h3 id="newsletter-heading">Suscríbete</h3>
+        <p>Recibe alertas de torneos y noticias directamente en tu correo.</p>
+        <form id="newsletter-form">
+            <input type="email" name="subscriber" placeholder="Tu correo" required>
+            <button type="submit" class="btn-secondary">Suscribir</button>
+            <p id="newsletter-success" class="success-msg" hidden>¡Suscripción exitosa!</p>
         </form>
     </section>
 </main>
@@ -98,17 +122,67 @@
 <button id="top-btn" aria-label="Ir arriba">↑</button>
 
 <footer class="footer">
-    <p>© 2026 LevelUp Arena | eSports Center</p>
+    <p>© 2026 Joel creación de torneos</p>
 </footer>
 
 <script>
-    // simple mobile menu toggle
+    // modal menu toggle
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
     navToggle.addEventListener('click', () => {
         const expanded = navToggle.getAttribute('aria-expanded') === 'true';
         navToggle.setAttribute('aria-expanded', String(!expanded));
         navList.classList.toggle('nav__list--open');
+    });
+
+    // header shadow on scroll
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+        // top button
+        const topBtn = document.getElementById('top-btn');
+        if (topBtn) {
+            if (window.scrollY > 300) topBtn.classList.add('show');
+            else topBtn.classList.remove('show');
+        }
+    });
+
+    // close mobile menu when a link is chosen
+    document.querySelectorAll('.nav__item a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('nav__list--open');
+            navToggle.setAttribute('aria-expanded','false');
+        });
+    });
+
+    // scroll-to-top
+    const topBtn = document.getElementById('top-btn');
+    if (topBtn) {
+        topBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // theme toggle with persistence
+    const themeToggle = document.getElementById('theme-toggle');
+    const userPref = localStorage.getItem('theme');
+    if (userPref) {
+        document.documentElement.setAttribute('data-theme', userPref);
+    } else {
+        // default to system preference
+        const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', osDark ? 'dark' : 'light');
+    }
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     });
 </script>
 </body>
