@@ -469,6 +469,43 @@ main {
     outline: 2px solid var(--primary-color);
 }
 
+/* ranking tabs */
+.ranking-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ranking-tab {
+    padding: 0.7rem 1.2rem;
+    border: 2px solid transparent;
+    background: rgba(157,0,255,0.1);
+    color: var(--text-light);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.ranking-tab:hover {
+    background: rgba(157,0,255,0.2);
+    border-color: var(--secondary-color);
+}
+
+.ranking-tab.active {
+    background: var(--primary-color);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 15px rgba(157,0,255,0.5);
+}
+
+.ranking-tab:focus {
+    outline: 2px dashed var(--secondary-color);
+    outline-offset: 3px;
+}
+
 /* table ranking */
 .ranking-table {
     width: 100%;
@@ -476,6 +513,12 @@ main {
     margin: 0 auto;
     border-collapse: collapse;
     text-align: left;
+    display: none;
+}
+
+.ranking-table.active-category {
+    display: table;
+    animation: fadeIn 0.4s ease;
 }
 
 .ranking-table th,

@@ -98,20 +98,82 @@
 
     <section id="ranking" class="ranking" aria-labelledby="ranking-heading">
         <h3 id="ranking-heading">Ranking Global</h3>
+        
+        <!-- Ranking Category Tabs -->
+        <div class="ranking-tabs" role="tablist" aria-label="Categorías de ranking">
+            <button class="ranking-tab active" data-category="minecraft" role="tab" aria-selected="true" aria-controls="minecraft-table">❤ Minecraft</button>
+            <button class="ranking-tab" data-category="roblox" role="tab" aria-selected="false" aria-controls="roblox-table">⚔ Roblox</button>
+            <button class="ranking-tab" data-category="free-fire" role="tab" aria-selected="false" aria-controls="free-fire-table">🔥 Free Fire</button>
+            <button class="ranking-tab" data-category="global" role="tab" aria-selected="false" aria-controls="global-table">🌍 Global</button>
+        </div>
+        
         <input type="text" id="ranking-filter" placeholder="Buscar jugador..." aria-label="Filtrar ranking" data-tooltip="Escribe para filtrar la lista">
-        <table class="ranking-table">
+        
+        <!-- Minecraft Rankings -->
+        <table id="minecraft-table" class="ranking-table active-category" role="tabpanel" aria-labelledby="minecraft-tab">
             <thead>
-                <tr><th>#</th><th>Jugador</th><th>Puntos</th></tr>
+                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Región</th></tr>
             </thead>
             <tbody>
-                <tr><td>1</td><td>PlayerOne</td><td>2540</td></tr>
-                <tr><td>2</td><td>ShadowNinja</td><td>2480</td></tr>
-                <tr><td>3</td><td>CyberQueen</td><td>2400</td></tr>
-                <tr><td>4</td><td>AlphaWolf</td><td>2350</td></tr>
-                <tr><td>5</td><td>joelmcd10</td><td>2300</td></tr>
-                <tr><td>6</td><td>GamerX</td><td>2280</td></tr>
-                <tr><td>7</td><td>NinjaPro</td><td>2250</td></tr>
-                <tr><td>8</td><td>SpeedRunner</td><td>2200</td></tr>
+                <tr><td>1</td><td>joelmcd10</td><td>2500</td><td>NA</td></tr>
+                <tr><td>2</td><td>Marlowww</td><td>450</td><td>NA</td></tr>
+                <tr><td>3</td><td>ItzRealMe</td><td>330</td><td>NA</td></tr>
+                <tr><td>4</td><td>coldified</td><td>296</td><td>EU</td></tr>
+                <tr><td>5</td><td>Swight</td><td>290</td><td>NA</td></tr>
+                <tr><td>6</td><td>janekv</td><td>230</td><td>EU</td></tr>
+                <tr><td>7</td><td>BlvckWlf</td><td>226</td><td>EU</td></tr>
+                <tr><td>8</td><td>Kylaz</td><td>226</td><td>NA</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- Roblox Rankings -->
+        <table id="roblox-table" class="ranking-table" role="tabpanel" aria-labelledby="roblox-tab" hidden>
+            <thead>
+                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Categoria</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>ObbyKing99</td><td>3200</td><td>Obby</td></tr>
+                <tr><td>2</td><td>BuildMaster_</td><td>3050</td><td>Tycoon</td></tr>
+                <tr><td>3</td><td>TowerClimber</td><td>2900</td><td>Obby</td></tr>
+                <tr><td>4</td><td>RichFarm2k</td><td>2800</td><td>Tycoon</td></tr>
+                <tr><td>5</td><td>joelmcd10</td><td>2750</td><td>Tycoon</td></tr>
+                <tr><td>6</td><td>SpeedRunner_R</td><td>2650</td><td>Obby</td></tr>
+                <tr><td>7</td><td>SkyScraper99</td><td>2550</td><td>Build</td></tr>
+                <tr><td>8</td><td>RobloxPro777</td><td>2480</td><td>Mixed</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- Free Fire Rankings -->
+        <table id="free-fire-table" class="ranking-table" role="tabpanel" aria-labelledby="free-fire-table" hidden>
+            <thead>
+                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Elims</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>FireKing42</td><td>2800</td><td>524</td></tr>
+                <tr><td>2</td><td>VenomStrike</td><td>2650</td><td>487</td></tr>
+                <tr><td>3</td><td>PhantomHunter</td><td>2540</td><td>451</td></tr>
+                <tr><td>4</td><td>SniperLord</td><td>2400</td><td>428</td></tr>
+                <tr><td>5</td><td>joelmcd10</td><td>2300</td><td>392</td></tr>
+                <tr><td>6</td><td>BlazeFury</td><td>2200</td><td>367</td></tr>
+                <tr><td>7</td><td>InfernoX</td><td>2100</td><td>345</td></tr>
+                <tr><td>8</td><td>CrimsonEdge</td><td>2000</td><td>318</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- Global Rankings -->
+        <table id="global-table" class="ranking-table" role="tabpanel" aria-labelledby="global-table" hidden>
+            <thead>
+                <tr><th>#</th><th>Jugador</th><th>Puntos Totales</th><th>Juegos</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>PlayerOne</td><td>7540</td><td>3</td></tr>
+                <tr><td>2</td><td>ShadowNinja</td><td>7480</td><td>3</td></tr>
+                <tr><td>3</td><td>CyberQueen</td><td>7400</td><td>3</td></tr>
+                <tr><td>4</td><td>AlphaWolf</td><td>7350</td><td>3</td></tr>
+                <tr><td>5</td><td>joelmcd10</td><td>7350</td><td>3</td></tr>
+                <tr><td>6</td><td>GamerX</td><td>7280</td><td>3</td></tr>
+                <tr><td>7</td><td>NinjaPro</td><td>7250</td><td>3</td></tr>
+                <tr><td>8</td><td>SpeedRunner</td><td>7200</td><td>3</td></tr>
             </tbody>
         </table>
     </section>
@@ -274,6 +336,32 @@
             newsletterForm.reset();
         });
     }
+
+    // ranking tabs switching
+    const rankingTabs = document.querySelectorAll('.ranking-tab');
+    const rankingTables = document.querySelectorAll('.ranking-table');
+    rankingTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const category = tab.getAttribute('data-category');
+            // update tabs
+            rankingTabs.forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            // update tables
+            rankingTables.forEach(table => {
+                table.classList.remove('active-category');
+                table.hidden = true;
+            });
+            const activeTable = document.getElementById(category + '-table');
+            if (activeTable) {
+                activeTable.classList.add('active-category');
+                activeTable.hidden = false;
+            }
+        });
+    });
 
     // ranking filter
     const rankingFilter = document.getElementById('ranking-filter');
