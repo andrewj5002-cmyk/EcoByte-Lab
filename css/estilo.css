@@ -1,9 +1,16 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* GENERAL */
 body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background-color: #0F0F1B;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0f1b, #141428);
     color: white;
+    overflow-x: hidden;
 }
 
 /* HEADER */
@@ -11,9 +18,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3rem;
-    background-color: #1C1C2E;
-    border-bottom: 2px solid #9D00FF;
+    padding: 1.5rem 4rem;
+    background: rgba(28, 28, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(157, 0, 255, 0.5);
 }
 
 .logo-box {
@@ -23,76 +31,119 @@ body {
 }
 
 .logo {
-    width: 70px;
+    width: 65px;
 }
 
 .header h1 {
-    color: #00F5FF;
     font-size: 1.8rem;
+    background: linear-gradient(90deg, #9D00FF, #00F5FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* NAV */
 .nav a {
+    margin-left: 2rem;
     text-decoration: none;
     color: #9D00FF;
-    margin-left: 2rem;
     font-size: 1rem;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background: #00F5FF;
     transition: 0.3s;
 }
 
 .nav a:hover {
     color: #00F5FF;
-    text-shadow: 0 0 10px #00F5FF;
+}
+
+.nav a:hover::after {
+    width: 100%;
 }
 
 /* HERO */
 .hero {
-    height: 80vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #0F0F1B, #1C1C2E);
+    padding: 2rem;
+}
+
+.hero-content {
+    max-width: 700px;
 }
 
 .hero h2 {
-    font-size: 2.5rem;
-    color: #9D00FF;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    color: #9D00FF;
+    text-shadow: 0 0 15px rgba(157, 0, 255, 0.7);
 }
 
 .hero p {
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
     font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ccc;
 }
 
-/* BOTÓN NEÓN */
-.btn {
+/* BOTONES */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.btn-primary {
     padding: 1rem 2.5rem;
-    font-size: 1rem;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(90deg, #9D00FF, #00F5FF);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #9D00FF;
+}
+
+.btn-secondary {
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
     border: 2px solid #00F5FF;
     background: transparent;
     color: #00F5FF;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 30px;
 }
 
-.btn:hover {
+.btn-secondary:hover {
     background: #00F5FF;
-    color: #0F0F1B;
-    box-shadow: 0 0 20px #00F5FF;
+    color: #0f0f1b;
 }
 
 /* FEATURES */
 .features {
-    padding: 4rem 2rem;
+    padding: 5rem 3rem;
     text-align: center;
 }
 
 .features h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
     color: #00F5FF;
 }
 
@@ -100,28 +151,39 @@ body {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: 3rem;
     flex-wrap: wrap;
 }
 
 .card {
-    background-color: #1C1C2E;
-    padding: 2rem;
-    width: 250px;
-    border-radius: 10px;
-    transition: 0.3s;
-    border: 1px solid #9D00FF;
+    background: rgba(28, 28, 46, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(157, 0, 255, 0.5);
+    padding: 2.5rem;
+    width: 260px;
+    border-radius: 15px;
+    transition: 0.4s;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px #9D00FF;
+    transform: translateY(-15px);
+    box-shadow: 0 0 30px rgba(157, 0, 255, 0.6);
+}
+
+.card h4 {
+    margin-bottom: 1rem;
+    color: #9D00FF;
+}
+
+.card p {
+    color: #ccc;
+    font-size: 1rem;
 }
 
 /* FOOTER */
 .footer {
     text-align: center;
-    padding: 1.5rem;
-    background-color: #1C1C2E;
-    border-top: 2px solid #9D00FF;
+    padding: 2rem;
+    background: #141428;
+    border-top: 1px solid rgba(157, 0, 255, 0.5);
+    color: #aaa;
 }
