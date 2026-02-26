@@ -35,6 +35,7 @@
             <li class="nav__item"><a href="#inicio">Inicio</a></li>
             <li class="nav__item"><a href="#torneos">Torneos</a></li>
             <li class="nav__item"><a href="#ranking">Ranking</a></li>
+            <li class="nav__item"><a href="#galeria">Galería</a></li>
             <li class="nav__item"><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
@@ -59,19 +60,19 @@
         <h3 id="torneos-heading">Torneos Estelares</h3>
         <p>Participa en nuestras competiciones temáticas; cada juego ofrece premios únicos y ranking propio.</p>
         <div class="cards">
-            <article class="card">
+            <article class="card" data-title="Minecraft Mayhem" data-desc="Compite en este mundo cúbico: construye, explora y defiende tu base. Premios para las creaciones más épicas.">
                 <h4>❤ Minecraft Mayhem ❤</h4>
                 <p>Construcción y supervivencia al máximo: solo los más creativos ganan.</p>
             </article>
-            <article class="card">
+            <article class="card" data-title="Roblox Royale" data-desc="Un reto personalizado en cada partida: escala la torre, domina el obby, o gana el tycoon.">
                 <h4>⚔ Roblox Royale ⚔</h4>
                 <p>Batallas de mini-juegos entre millones de mundos creados por usuarios.</p>
             </article>
-            <article class="card">
+            <article class="card" data-title="Free Fire Blaze" data-desc="15 minutos de acción, 50 jugadores, los mejores drops y zonas de alto riesgo. Solo el más rápido vive.">
                 <h4>🔥 Free Fire Blaze 🔥</h4>
                 <p>Dispara, sobrevive y sé el último en pie en el mapa incendiario.</p>
             </article>
-            <article class="card">
+            <article class="card" data-title="Torneo Sorpresa" data-desc="Nunca sabes qué juego tocará. ¡Mantente listo para cualquier desafío!">
                 <h4>🎮 Torneo Sorpresa 🎮</h4>
                 <p>Evento wildcard con rotación semanal de títulos populares.</p>
             </article>
@@ -80,6 +81,7 @@
 
     <section id="ranking" class="ranking" aria-labelledby="ranking-heading">
         <h3 id="ranking-heading">Ranking Global</h3>
+        <input type="text" id="ranking-filter" placeholder="Buscar jugador..." aria-label="Filtrar ranking">
         <ol class="ranking-list">
             <li>PlayerOne - 2540 pts</li>
             <li>ShadowNinja - 2480 pts</li>
@@ -117,6 +119,21 @@
             <p id="newsletter-success" class="success-msg" hidden>¡Suscripción exitosa!</p>
         </form>
     </section>
+
+    <section id="galeria" class="galeria" aria-labelledby="galeria-heading">
+        <h3 id="galeria-heading">Galería de acciones</h3>
+        <div class="carousel">
+            <button class="carousel__nav carousel__prev" aria-label="Anterior">‹</button>
+            <div class="carousel__track-container">
+                <ul class="carousel__track">
+                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 1"></li>
+                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 2"></li>
+                    <li class="carousel__slide"><img src="img/logo.png" alt="Captura 3"></li>
+                </ul>
+            </div>
+            <button class="carousel__nav carousel__next" aria-label="Siguiente">›</button>
+        </div>
+    </section>
 </main>
 
 <button id="top-btn" aria-label="Ir arriba">↑</button>
@@ -124,6 +141,15 @@
 <footer class="footer">
     <p>© 2026 Joel creación de torneos</p>
 </footer>
+
+<!-- generic modal for tournament details -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal__content">
+        <button class="modal__close" aria-label="Cerrar">×</button>
+        <h2 id="modal-title"></h2>
+        <p id="modal-desc"></p>
+    </div>
+</div>
 
 <script>
     // modal menu toggle
@@ -184,6 +210,26 @@
         localStorage.setItem('theme', next);
         themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     });
+
+    // contact form submission simulation
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('contact-success').hidden = false;
+            contactForm.reset();
+        });
+    }
+
+    // newsletter form
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('newsletter-success').hidden = false;
+            newsletterForm.reset();
+        });
+    }
 </script>
 </body>
 </html>
