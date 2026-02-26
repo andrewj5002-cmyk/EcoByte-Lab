@@ -98,19 +98,12 @@
 
     <section id="ranking" class="ranking" aria-labelledby="ranking-heading">
         <h3 id="ranking-heading">Ranking Global</h3>
+        <p>Elige una categoría para ver los mejores jugadores</p>
         
-        <!-- Ranking Category Tabs -->
-        <div class="ranking-tabs" role="tablist" aria-label="Categorías de ranking">
-            <button class="ranking-tab active" data-category="minecraft" role="tab" aria-selected="true" aria-controls="minecraft-table">❤ Minecraft</button>
-            <button class="ranking-tab" data-category="roblox" role="tab" aria-selected="false" aria-controls="roblox-table">⚔ Roblox</button>
-            <button class="ranking-tab" data-category="free-fire" role="tab" aria-selected="false" aria-controls="free-fire-table">🔥 Free Fire</button>
-            <button class="ranking-tab" data-category="global" role="tab" aria-selected="false" aria-controls="global-table">🌍 Global</button>
-        </div>
+        <input type="text" id="ranking-filter" placeholder="Buscar jugador..." class="ranking-search">
         
-        <input type="text" id="ranking-filter" placeholder="Buscar jugador..." aria-label="Filtrar ranking" data-tooltip="Escribe para filtrar la lista">
-        
-        <!-- Minecraft Rankings -->
-        <table id="minecraft-table" class="ranking-table active-category" role="tabpanel" aria-labelledby="minecraft-tab">
+        <!-- Minecraft Table -->
+        <table id="minecraft" class="ranking-table active-table">
             <thead>
                 <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Región</th></tr>
             </thead>
@@ -126,10 +119,10 @@
             </tbody>
         </table>
         
-        <!-- Roblox Rankings -->
-        <table id="roblox-table" class="ranking-table" role="tabpanel" aria-labelledby="roblox-tab" hidden>
+        <!-- Roblox Table -->
+        <table id="roblox" class="ranking-table">
             <thead>
-                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Categoria</th></tr>
+                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Categoría</th></tr>
             </thead>
             <tbody>
                 <tr><td>1</td><td>ObbyKing99</td><td>3200</td><td>Obby</td></tr>
@@ -143,10 +136,10 @@
             </tbody>
         </table>
         
-        <!-- Free Fire Rankings -->
-        <table id="free-fire-table" class="ranking-table" role="tabpanel" aria-labelledby="free-fire-table" hidden>
+        <!-- Free Fire Table -->
+        <table id="freefire" class="ranking-table">
             <thead>
-                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Elims</th></tr>
+                <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Elimaciones</th></tr>
             </thead>
             <tbody>
                 <tr><td>1</td><td>FireKing42</td><td>2800</td><td>524</td></tr>
@@ -160,8 +153,8 @@
             </tbody>
         </table>
         
-        <!-- Global Rankings -->
-        <table id="global-table" class="ranking-table" role="tabpanel" aria-labelledby="global-table" hidden>
+        <!-- Global Table -->
+        <table id="global" class="ranking-table">
             <thead>
                 <tr><th>#</th><th>Jugador</th><th>Puntos Totales</th><th>Juegos</th></tr>
             </thead>
@@ -176,6 +169,14 @@
                 <tr><td>8</td><td>SpeedRunner</td><td>7200</td><td>3</td></tr>
             </tbody>
         </table>
+        
+        <!-- Bottom Navigation Buttons -->
+        <div class="ranking-buttons ranking-buttons-bottom">
+            <button class="ranking-btn active" data-category="minecraft">❤ Minecraft</button>
+            <button class="ranking-btn" data-category="roblox">⚔ Roblox</button>
+            <button class="ranking-btn" data-category="freefire">🔥 Free Fire</button>
+            <button class="ranking-btn" data-category="global">🌍 Global</button>
+        </div>
     </section>
 
     <section id="contacto" class="contacto" aria-labelledby="contacto-heading">
@@ -258,6 +259,20 @@
 </div>
 
 <script>
+    // Initialize rankings on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        // Set minecraft as default active
+        switchRanking('minecraft');
+        
+        // Add event listeners to ranking buttons
+        document.querySelectorAll('.ranking-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-category');
+                switchRanking(category);
+            });
+        });
+    });
+    
     // modal menu toggle
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
@@ -337,31 +352,39 @@
         });
     }
 
-    // ranking tabs switching
-    const rankingTabs = document.querySelectorAll('.ranking-tab');
-    const rankingTables = document.querySelectorAll('.ranking-table');
-    rankingTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const category = tab.getAttribute('data-category');
-            // update tabs
-            rankingTabs.forEach(t => {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-            });
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
-            // update tables
-            rankingTables.forEach(table => {
-                table.classList.remove('active-category');
-                table.hidden = true;
-            });
-            const activeTable = document.getElementById(category + '-table');
-            if (activeTable) {
-                activeTable.classList.add('active-category');
-                activeTable.hidden = false;
+    // ranking tabs switching - FIXED
+    function switchRanking(category) {
+        // Hide all tables
+        document.querySelectorAll('.ranking-table').forEach(table => {
+            table.style.display = 'none';
+        });
+        
+        // Remove active from all buttons
+        document.querySelectorAll('.ranking-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Show selected table
+        const selectedTable = document.getElementById(category);
+        if (selectedTable) {
+            selectedTable.style.display = 'table';
+        }
+        
+        // Mark corresponding buttons as active
+        document.querySelectorAll('.ranking-btn').forEach(btn => {
+            const btnText = btn.textContent.toLowerCase();
+            let isMatch = false;
+            
+            if (category === 'minecraft' && btnText.includes('minecraft')) isMatch = true;
+            if (category === 'roblox' && btnText.includes('roblox')) isMatch = true;
+            if (category === 'freefire' && btnText.includes('fire')) isMatch = true;
+            if (category === 'global' && btnText.includes('global')) isMatch = true;
+            
+            if (isMatch) {
+                btn.classList.add('active');
             }
         });
-    });
+    }
 
     // ranking filter
     const rankingFilter = document.getElementById('ranking-filter');
