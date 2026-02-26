@@ -1,11 +1,9 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* VARIABLES */
 :root {
     --primary-color: #9D00FF;
     --secondary-color: #00F5FF;
@@ -17,7 +15,6 @@
     --transition-fast: 0.3s;
 }
 
-/* GENERAL */
 body {
     font-family: var(--font-sans);
     background: linear-gradient(135deg, var(--background-dark), var(--background-light));
@@ -36,7 +33,6 @@ a:focus {
     outline-offset: 3px;
 }
 
-/* THEME SWITCH */
 [data-theme="light"] {
     --background-dark: #ffffff;
     --background-light: #f0f0f0;
@@ -60,7 +56,6 @@ a:focus {
     transform: scale(1.1);
 }
 
-/* HEADER */
 .header {
     display: flex;
     justify-content: space-between;
@@ -101,14 +96,12 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
-/* NAV */
 .nav {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-/* skip link */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -123,7 +116,6 @@ main {
     top: 0;
 }
 
-/* form label spacing */
 .contacto label,
 .newsletter label {
     display: block;
@@ -131,7 +123,6 @@ main {
     font-size: 0.9rem;
 }
 
-/* ensure canvas is top but not blocking */
 #hero-canvas {
     z-index: 0;
 }
@@ -140,7 +131,6 @@ main {
     z-index: 2000;
 }
 
-/* tooltip */
 [data-tooltip] {
     position: relative;
     cursor: help;
@@ -212,7 +202,6 @@ main {
     width: 100%;
 }
 
-/* mobile nav open state */
 .nav__list--open {
     display: block;
     position: absolute;
@@ -250,7 +239,6 @@ main {
     }
 }
 
-/* HERO */
 .hero {
     position: relative;
     overflow: hidden;
@@ -323,7 +311,6 @@ main {
     }
 }
 
-/* BOTONES */
 .hero-buttons {
     display: flex;
     justify-content: center;
@@ -370,7 +357,6 @@ main {
     outline-offset: 4px;
 }
 
-/* FEATURES */
 .features, .torneos, .ranking, .contacto {
     padding: 5rem 3rem;
     text-align: center;
@@ -413,7 +399,6 @@ main {
     box-shadow: 0 0 30px rgba(157, 0, 255, 0.6);
 }
 
-/* alternate card colors for variety */
 .card:nth-child(odd) h4 {
     color: var(--secondary-color);
 }
@@ -445,7 +430,6 @@ main {
     }
 }
 
-/* RANKING LIST */
 .ranking-list {
     list-style: none;
     padding: 0;
@@ -479,8 +463,6 @@ main {
     color: rgba(255,255,255,0.5);
 }
 
-/* ranking tabs */
-/* RANKING SECTION */
 .ranking {
     padding: 4rem 2rem;
     text-align: center;
@@ -498,7 +480,6 @@ main {
     font-size: 1.1rem;
 }
 
-/* Ranking Buttons Container */
 .ranking-buttons {
     display: flex;
     justify-content: center;
@@ -550,7 +531,6 @@ main {
     padding-top: 2rem;
 }
 
-/* Search Input */
 .ranking-search {
     display: block;
     margin: 2rem auto;
@@ -579,7 +559,6 @@ main {
     color: rgba(255,255,255,0.5);
 }
 
-/* Ranking Tables */
 .ranking-table {
     width: 100%;
     max-width: 850px;

@@ -6,7 +6,6 @@
     <meta name="description" content="LevelUp Arena: compite en torneos de eSports, descubre coaching profesional, streaming y ranking global.">
     <meta name="author" content="LevelUp Arena">
     <title>LevelUp Arena</title>
-    <!-- Structured data JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -20,15 +19,12 @@
       }
     }
     </script>
-    <!-- Open Graph / Social tags -->
     <meta property="og:title" content="LevelUp Arena" />
     <meta property="og:description" content="Compite en torneos de eSports, transmite en vivo y sube en el ranking global." />
     <meta property="og:image" content="img/logo.png" />
     <meta property="og:type" content="website" />
-    <!-- Preload assets -->
     <link rel="preload" href="img/logo.png" as="image">
     <link rel="preload" href="img/favicon.ico" as="image">
-    <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -58,7 +54,6 @@
 
 <main>
     <section id="inicio" class="hero" role="banner">
-        <!-- canvas for floating particles -->
         <canvas id="hero-canvas"></canvas>
         <div class="hero-content" tabindex="-1">
             <h2>Domina la Arena</h2>
@@ -102,7 +97,6 @@
         
         <input type="text" id="ranking-filter" placeholder="Buscar jugador..." class="ranking-search">
         
-        <!-- Minecraft Table -->
         <table id="minecraft" class="ranking-table active-table">
             <thead>
                 <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Región</th></tr>
@@ -119,7 +113,6 @@
             </tbody>
         </table>
         
-        <!-- Roblox Table -->
         <table id="roblox" class="ranking-table">
             <thead>
                 <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Categoría</th></tr>
@@ -136,7 +129,6 @@
             </tbody>
         </table>
         
-        <!-- Free Fire Table -->
         <table id="freefire" class="ranking-table">
             <thead>
                 <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Elimaciones</th></tr>
@@ -153,7 +145,6 @@
             </tbody>
         </table>
         
-        <!-- Global Table -->
         <table id="global" class="ranking-table">
             <thead>
                 <tr><th>#</th><th>Jugador</th><th>Puntos Totales</th><th>Juegos</th></tr>
@@ -170,7 +161,6 @@
             </tbody>
         </table>
         
-        <!-- Bottom Navigation Buttons -->
         <div class="ranking-buttons ranking-buttons-bottom">
             <button class="ranking-btn active" data-category="minecraft">❤ Minecraft</button>
             <button class="ranking-btn" data-category="roblox">⚔ Roblox</button>
@@ -249,7 +239,6 @@
     </div>
 </footer>
 
-<!-- generic modal for tournament details -->
 <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal__content" tabindex="-1">
         <button class="modal__close" aria-label="Cerrar">×</button>
@@ -259,12 +248,9 @@
 </div>
 
 <script>
-    // Initialize rankings on page load
     document.addEventListener('DOMContentLoaded', () => {
-        // Set minecraft as default active
         switchRanking('minecraft');
         
-        // Add event listeners to ranking buttons
         document.querySelectorAll('.ranking-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const category = btn.getAttribute('data-category');
@@ -273,7 +259,6 @@
         });
     });
     
-    // modal menu toggle
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
     navToggle.addEventListener('click', () => {
@@ -282,12 +267,10 @@
         navList.classList.toggle('nav__list--open');
     });
 
-    // header shadow on scroll
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 10) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
-        // top button
         const topBtn = document.getElementById('top-btn');
         if (topBtn) {
             if (window.scrollY > 300) topBtn.classList.add('show');
@@ -295,7 +278,6 @@
         }
     });
 
-    // close mobile menu when a link is chosen
     document.querySelectorAll('.nav__item a').forEach(link => {
         link.addEventListener('click', () => {
             navList.classList.remove('nav__list--open');
@@ -303,7 +285,6 @@
         });
     });
 
-    // scroll-to-top
     const topBtn = document.getElementById('top-btn');
     if (topBtn) {
         topBtn.addEventListener('click', () => {
@@ -332,7 +313,6 @@
         themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     });
 
-    // contact form submission simulation
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', e => {
